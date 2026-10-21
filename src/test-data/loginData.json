@@ -1,0 +1,17 @@
+{
+  "invalidPassword": {
+    "username": "standard_user",
+    "password": "wrong_password",
+    "expectedError": "Username and password do not match"
+  },
+  "lockedOutUser": {
+    "username": "locked_out_user",
+    "password": "secret_sauce",
+    "expectedError": "Sorry, this user has been locked out"
+  },
+  "emptyCredentials": {
+    "username": "",
+    "password": "",
+    "expectedError": "Username is required"
+  }
+}
