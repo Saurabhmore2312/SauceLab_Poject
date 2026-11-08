@@ -107,7 +107,7 @@ test('FUNC-012 - Product details Verification on specific product page', async({
     const inventoryitemPrice = await productPage.productPrice.first().textContent();
     const inventoryitemImage = await productPage.productImage.first().getAttribute('src');
     const inventoryitemAddToCartButton = await productPage.addToCartButton.first().textContent();
-    
+    await productPage.productName.first().click();
 
     const specificProductName = productPage.productSpecificName;
     const specificProductDescription = productPage.productSpecificDescription;
