@@ -1,0 +1,8 @@
+{
+    "Values":{
+        "Aplhabetical":"az",
+        "Reverse_Alphabetical":"za",
+        "Price_Low_to_High":"lohi",
+        "Price_High_to_Low":"hilo"
+    }
+}

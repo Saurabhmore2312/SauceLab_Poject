@@ -2,12 +2,15 @@
 import { test, expect } from '@playwright/test';
 import { LoginPage } from '../../src/pages/LoginPage.js';
 import { credentials } from '../../src/config/env.js';
-import loginData from '../../src/test-data/loginData.json'
-  with { type: 'json' };
+import loginData from '../../src/test-data/loginData.json' with { type: 'json' };
+
+let loginPage: LoginPage;
+
+test.beforeEach(async ({ page }) => {
+  loginPage = new LoginPage(page);
+});
 
 test('SauceDemo login page should load successfully', async ({ page }) => {
-  const loginPage = new LoginPage(page);
-
   await loginPage.navigate();
 
   await expect(page).toHaveTitle('Swag Labs');
@@ -16,39 +19,15 @@ test('SauceDemo login page should load successfully', async ({ page }) => {
   await expect(loginPage.loginButton).toBeVisible();
 });
 
-test('standard user should log in successfully', async ({ page }) => {
-  const loginPage = new LoginPage(page);
-
+test('FUNC-001 Login with valid standard user', async ({ page }) => {
   await loginPage.navigate();
-  await loginPage.login(
-    credentials.username,
-    credentials.password
-  );
+  await loginPage.login(credentials.username, credentials.password);
 
   await expect(page).toHaveURL(/inventory\.html/);
-  await expect(
-    page.getByText('Products', { exact: true })
-  ).toBeVisible();
+  await expect(page.getByText('Products', { exact: true })).toBeVisible();
 });
 
-test('invalid password should display an error', async ({ page }) => {
-  const loginPage = new LoginPage(page);
-
-  await loginPage.navigate();
-  await loginPage.login(
-    loginData.invalidPassword.username,
-    loginData.invalidPassword.password
-  );
-
-  await expect(loginPage.errorMessage).toBeVisible();
-  await expect(loginPage.errorMessage).toContainText(
-    loginData.invalidPassword.expectedError
-  );
-});
-
-test('locked out user should display an error', async ({ page }) => {
-  const loginPage = new LoginPage(page);
-
+test('FUNC-002 Login with locked-out user', async () => {
   await loginPage.navigate();
   await loginPage.login(
     loginData.lockedOutUser.username,
@@ -61,9 +40,20 @@ test('locked out user should display an error', async ({ page }) => {
   );
 });
 
-test('empty credentials should display an error', async ({ page }) => {
-  const loginPage = new LoginPage(page);
+test('FUNC-003 Login with invalid username/password', async () => {
+  await loginPage.navigate();
+  await loginPage.login(
+    loginData.invalidPassword.username,
+    loginData.invalidPassword.password
+  );
 
+  await expect(loginPage.errorMessage).toBeVisible();
+  await expect(loginPage.errorMessage).toContainText(
+    loginData.invalidPassword.expectedError
+  );
+});
+
+test('Empty credentials should display an error', async () => {
   await loginPage.navigate();
   await loginPage.login(
     loginData.emptyCredentials.username,
