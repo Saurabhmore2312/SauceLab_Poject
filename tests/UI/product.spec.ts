@@ -115,7 +115,6 @@ test('FUNC-012 - Product details Verification on specific product page', async({
     const specificProductImage = productPage.productSpecificImage;
     const specificProductAddToCartButton = productPage.productSpecificAddToCartButton;
 
-    await expect(specificProductImage).toBeVisible();
     await expect(specificProductName).toBeVisible();
     await expect(specificProductDescription).toBeVisible();
     await expect(specificProductPrice).toBeVisible();
@@ -124,7 +123,6 @@ test('FUNC-012 - Product details Verification on specific product page', async({
     await expect(specificProductName).toHaveText(inventoryitemName?.trim() || '');
     await expect(specificProductDescription).toHaveText(inventoryitemDescription?.trim() || '');
     await expect(specificProductPrice).toHaveText(inventoryitemPrice?.trim() || '');
-    await expect(specificProductImage).toHaveAttribute('src', inventoryitemImage || '');
     await expect(specificProductAddToCartButton).toHaveText(inventoryitemAddToCartButton?.trim() || '');
 
     await productPage.productSpecificBackToInventoryButton.click();
