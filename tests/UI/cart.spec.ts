@@ -145,7 +145,7 @@ test('FUNC-019 - Continue Shopping returns to inventory', async({page})=>{
 
 })
 
-test.only('FUNC-020 - Cart retains items while navigating within session', async({page})=>{
+test('FUNC-020 - Cart retains items while navigating within session', async({page})=>{
 
     await productPage.addToCartButton.first().click();
         const inventoryitemName = await productPage.productName.first().textContent();
