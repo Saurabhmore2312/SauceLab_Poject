@@ -147,7 +147,7 @@ test('FUNC-013 - Add product to cart', async({page})=>{
     const cartitemDescription = await productPage.productDescription.first().textContent();
     const cartitemPrice = await productPage.productPrice.first().textContent();
 
-    console.log(cartitemName, cartitemDescription, cartitemPrice);
+    
 
     await expect(inventoryitemName).toEqual(cartitemName);
     await expect(inventoryitemDescription).toEqual(cartitemDescription);
