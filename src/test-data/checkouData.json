@@ -1,0 +1,24 @@
+{
+  "FirstNameRequired": {
+    "expectedError": "Error: First Name is required"
+  },
+
+  "LastNameRequired": {
+    "FirstName": "John",
+    "expectedError": "Error: Last Name is required"
+  },
+  "PostalCodeRequired": {
+    "FirstName": "John",
+    "LastName": "Doe",
+    "expectedError": "Error: Postal Code is required"
+  },
+  "ValidCheckoutInformation": {
+    "FirstName": "John",
+    "LastName": "Doe",
+    "PostalCode": "12345"
+  },
+  "CheckOutMessage":{
+    "Header": "Thank you for your order!",
+    "Text": "Your order has been dispatched, and will arrive just as fast as the pony can get there!"
+  }
+}
